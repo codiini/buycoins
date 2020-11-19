@@ -3,6 +3,12 @@ const userName = document.getElementById("profile_name");
 const avatar = document.getElementById("profile_avatar");
 const userLogin = document.getElementById("profile_username");
 const about = document.getElementById("profile_description");
+const followerCount = document.getElementById("follower_count");
+const followingCount = document.getElementById("following_count");
+const twitterUser = document.getElementById("twitter_username");
+const emailAddress = document.getElementById("email");
+const totalStarredRepos = document.getElementById("starred_repos");
+const navProfileImg = document.getElementById("nav-profile-img");
 
 fetch(`/api`)
   .then((res) => res.json())
@@ -15,13 +21,31 @@ fetch(`/api`)
 const createInfo = (res) => {
   const repos = document.getElementById("repositories_list");
 
-  let {avatarUrl, name, login, bio} = res.data.repositoryOwner;
+  let {
+    avatarUrl,
+    name,
+    login,
+    bio,
+    email,
+    twitterUsername,
+    followers,
+    following,
+    starredRepositories,
+  } = res.data.repositoryOwner;
   const repositories = res.data.repositoryOwner.repositories.nodes;
 
   avatar.src = avatarUrl;
+  navProfileImg.src = avatarUrl;
   userName.textContent = name;
   userLogin.textContent = login;
   about.textContent = bio;
+  emailAddress.textContent = email;
+  emailAddress.href = `mailto:${email}`;
+  twitterUser.href = `https://twitter.com/${twitterUsername}`;
+  twitterUser.textContent = twitterUsername;
+  followerCount.textContent = followers.totalCount;
+  followingCount.textContent = following.totalCount;
+  totalStarredRepos.textContent = starredRepositories.totalCount;
   console.log(repositories);
   repositories.forEach((repo) => {
     let apidate = new Date(repo.updatedAt);
@@ -105,5 +129,4 @@ const createInfo = (res) => {
 
     repos.appendChild(allholder);
   });
-
 };
