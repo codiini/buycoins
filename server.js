@@ -22,6 +22,17 @@ const body = {
             bio
             avatarUrl
             login
+            twitterUsername
+            email
+            starredRepositories {
+              totalCount
+            }
+            followers {
+              totalCount
+            }
+            following {
+              totalCount
+            }
             repositories(last: 20, privacy: PUBLIC) {
               nodes {
                 name
