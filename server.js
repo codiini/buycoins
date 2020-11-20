@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const fetch = require("node-fetch");
-require("dotenv").config();
+require("dotenv").config({silent: true});
 
 app.use(express.json());
 app.use(express.urlencoded());
