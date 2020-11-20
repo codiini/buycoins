@@ -148,7 +148,7 @@ i {
 .profile {
   width: 30%;
   height: 100vh;
-  padding: 0 0px 0px 10px;
+  padding: 0 0px 0px 60px;
   margin-right: 30px;
   display: flex;
   flex-direction: column;
